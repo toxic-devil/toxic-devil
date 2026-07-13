@@ -1,54 +1,66 @@
-<h1 align="center"><b>Hey, I'm TOXIC DEVIL</b><img src="https://raw.githubusercontent.com/TOXIC-DEVIL/TOXIC-DEVIL/TOXIC-DEVIL-OFFICIAL/media/Hi.gif" width="35"></h1>
+# Anonymous Telegram Chat Bot
 
-<p align="center">
-  <a href="https://github.com/TOXIC-DEVIL"><img src="https://readme-typing-svg.demolab.com/?lines=<Hobby+Developer/>&font=Time+New+Roman&color=90EE90&size=25&center=true&vCenter=true&width=600&height=100"></a>
-</p>
+A JavaScript Telegram bot built with [grammY](https://grammy.dev/) for anonymous one-to-one chats. Users complete a profile, search for random partners, spend referral coins on filtered searches, share usernames with `/dm`, and report abusive chats to the developer.
 
-<h1 align="center"><b>About Me </b><img src="https://i.pinimg.com/originals/c1/e9/51/c1e95172d8c115d66148cb9ad68c1c74.gif" width="35"></h1>
+## Features
 
-- 🧑‍🏫 I’m a passionate Self-Taught **Junior Developer**
+- `/start` creates an account, assigns a unique internal user id, and collects nickname, age, gender, and sexuality.
+- Inline buttons start random partner search, filtered search, show referral coins, or end a chat.
+- Filtered search can target gender, age range, and sexuality and costs premium coins.
+- New users receive configurable starting coins, and referrers receive coins when friends join from their referral link.
+- Messages are copied between paired chats so partners stay anonymous.
+- `/dm` shares the sender's Telegram username with the current partner only.
+- `/report <reason>` sends both users' profile information plus recent chat messages to the developer id.
+- `/stats [search]` is developer-only and shows usage statistics plus searchable user records.
+- SQLite stores account details, profile parameters, queues, chats, messages, reports, and coin balances.
 
-- 📖 I’m currently learning **PHP.**
+## Setup
 
-- 🕵️ I’m looking to collaborate with other **Developers.**
+1. Install Node.js 20+.
+2. Install dependencies:
 
-<p align="center">
-  <a href="https://github.com/TOXIC-DEVIL"> <img  alt="TOXIC-DEVIL's GitHub Stats" src="https://awesome-github-stats.azurewebsites.net/user-stats/TOXIC-DEVIL?cardType=github&theme=github-dark&preferLogin=true" />  </a>
+   ```bash
+   npm install
+   ```
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=TOXIC-DEVIL&label=Profile%20Views&color=ffa500&style=flat" alt="TOXIC-DEVIL" /> </p>
+3. Copy `.env.example` values into your environment and set `BOT_TOKEN` and `DEVELOPER_ID`.
+4. Start the bot:
 
-<h1 align="center"><img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="35"><b> Skills</b>
-<br></h1>
+   ```bash
+   BOT_TOKEN="123456:token" DEVELOPER_ID="123456789" npm start
+   ```
 
-<div style="display: flex;">
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/>    
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/><br>
+## Configuration
 
-<h1 align="center"><b>Reach Me Out </b><img src="https://github.com/0xAbdulKhalid/0xAbdulKhalid/raw/main/assets/mdImages/handshake.gif" width="55"></h1>
+| Variable | Default | Description |
+| --- | --- | --- |
+| `BOT_TOKEN` | required | Telegram bot token from BotFather. |
+| `DEVELOPER_ID` | `0` | Telegram user id that can use `/stats` and receives reports. |
+| `INITIAL_COINS` | `20` | Coins given to every new user. |
+| `FILTER_SEARCH_COST` | `5` | Cost of one filtered search. |
+| `REFERRAL_REWARD` | `10` | Coins given to a referrer when a new user joins. |
+| `DATABASE_PATH` | `anonymous_chat.sqlite3` | SQLite database file path. |
 
-  <a href="mailto:toxicdevil.abhinav@gmail.com?subject=[%20GITHUB%20]%20">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="https://www.instagram.com/_toxic._devil_">
-    <img src="https://img.shields.io/badge/Instagram-E75480?style=for-the-badge&logo=instagram&logoColor=white" />
-  </a>
+## Commands
 
-  <a href="https://youtube.com/@toxicdevilofficial">
-    <img src="https://img.shields.io/badge/Youtube-FF0000?style=for-the-badge&logo=YouTube&logoColor=white" />
-  </a>
-  
-<a href="https://t.me/toxic_devil_official">
-    <img src="https://img.shields.io/badge/Telegram-2AABEE?style=for-the-badge&logo=telegram&logoColor=white" />
-  </a><br>
+| Command | Who can use it | Purpose |
+| --- | --- | --- |
+| `/start [referrer_id]` | Everyone | Register, complete profile, or reopen the main menu. |
+| `/dm` | Active chat users | Share your Telegram username with the current partner. |
+| `/stop` | Everyone | End the current chat or leave the waiting queue. |
+| `/report <reason>` | Active chat users | Send the chat and both profiles to the developer. |
+| `/stats [search]` | Developer only | View usage totals and recent or matching users. |
 
-<h1 align="center"><b>Support</b></h1>
+## Filtered search format
 
-<a href="https://www.buymeacoffee.com/toxicdevil">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="160" height="50" />
-  </a><br><br>
+After tapping **Filtered search**, send filters as:
 
-<p><b>Thank You! <img src="https://em-content.zobj.net/source/noto-emoji-animations/344/upside-down-face_1f643.gif" hight ="20px" width ="20px"></b></p>
+```text
+gender min_age max_age sexuality
+```
+
+Example:
+
+```text
+female 18 25 straight
+```
