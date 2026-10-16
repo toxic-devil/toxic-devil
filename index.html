@@ -1,435 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Abhinav | Developer</title>
-	<style>
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		scroll-behavior: smooth;
-	}
-	
-	:root {
-		--bg: #0b0c10;
-		--card: #111318;
-		--text: #e8e8e8;
-		--muted: #9a9a9a;
-		--border: #242832;
-		--accent: #7dd3fc;
-	}
-	
-	.light {
-		--bg: #f7f7f5;
-		--card: #ffffff;
-		--text: #151515;
-		--muted: #666;
-		--border: #ddd;
-		--accent: #2563eb;
-	}
-	
-	body {
-		background: var(--bg);
-		color: var(--text);
-		font-family: Inter, system-ui, Arial, sans-serif;
-		line-height: 1.7;
-		transition: .4s;
-	}
-	
-	.container {
-		width: min(950px, 90%);
-		margin: auto;
-	}
-	
-	nav {
-		position: sticky;
-		top: 20px;
-		z-index: 10;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 15px 0;
-	}
-	
-	.logo {
-		font-weight: 700;
-		font-size: 1.2rem;
-	}
-	
-	button {
-		background: var(--card);
-		color: var(--text);
-		border: 1px solid var(--border);
-		padding: 8px 15px;
-		border-radius: 20px;
-		cursor: pointer;
-	}
-	
-	.hero {
-		padding: 90px 0 70px;
-		animation: appear 1s;
-	}
-	
-	.quote-intro {
-		font-size: 1.05rem;
-		color: var(--muted);
-		font-style: italic;
-		max-width: 650px;
-		margin-bottom: 35px;
-		animation: appear 1.2s ease;
-	}
-	
-	.quote-intro::before {
-		content: "“";
-		font-size: 3rem;
-		color: var(--accent);
-		vertical-align: -15px;
-		margin-right: 8px;
-	}
-	
-	.quote-intro::after {
-		content: "”";
-		font-size: 3rem;
-		color: var(--accent);
-		vertical-align: -15px;
-		margin-left: 5px;
-	}
-	
-	.tag {
-		color: var(--accent);
-		letter-spacing: 3px;
-		font-size: .8rem;
-	}
-	
-	h1 {
-		font-size: clamp(3rem, 8vw, 5.5rem);
-		letter-spacing: -4px;
-		margin: 15px 0;
-	}
-	
-	.hero p:not(.quote-intro) {
-		max-width: 650px;
-		font-size: 1.25rem;
-		color: var(--muted);
-	}
-	
-	.links {
-		margin-top: 30px;
-		display: flex;
-		gap: 15px;
-	}
-	
-	.links a {
-		text-decoration: none;
-		color: var(--accent);
-	}
-	
-	section {
-		margin: 90px 0;
-	}
-	
-	.heading {
-		color: var(--muted);
-		text-transform: uppercase;
-		letter-spacing: 3px;
-		font-size: .8rem;
-		margin-bottom: 30px;
-	}
-	
-	.about {
-		border-left: 2px solid var(--accent);
-		padding-left: 25px;
-		color: var(--muted);
-	}
-	
-	.projects {
-		display: grid;
-		gap: 20px;
-	}
-	
-	.project {
-		background: var(--card);
-		border: 1px solid var(--border);
-		padding: 25px;
-		border-radius: 18px;
-		cursor: pointer;
-		transition: .35s;
-		overflow: hidden;
-	}
-	
-	.project:hover {
-		transform: translateY(-5px);
-	}
-	
-	.project h3 {
-		display: flex;
-		justify-content: space-between;
-	}
-	
-	.arrow {
-		color: var(--accent);
-	}
-	
-	.details {
-		max-height: 0;
-		overflow: hidden;
-		transition: .5s;
-		color: var(--muted);
-	}
-	
-	.project.active .details {
-		max-height: 200px;
-		margin-top: 15px;
-	}
-	
-	.tags {
-		display: flex;
-		gap: 8px;
-		flex-wrap: wrap;
-		margin-top: 15px;
-	}
-	
-	.tags span {
-		padding: 4px 12px;
-		border: 1px solid var(--border);
-		border-radius: 20px;
-		font-size: .8rem;
-	}
-	
-	.stack {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		gap: 15px;
-	}
-	
-	.box {
-		background: var(--card);
-		border: 1px solid var(--border);
-		padding: 20px;
-		border-radius: 15px;
-		transition: .3s;
-	}
-	
-	.box:hover {
-		transform: translateY(-4px);
-	}
-	
-	.box h3 {
-		margin-bottom: 10px;
-		font-size: 1rem;
-	}
-	
-	.box p {
-		color: var(--muted);
-	}
-	
-	.beyond {
-		display: grid;
-		gap: 20px;
-	}
-	
-	.beyond p {
-		color: var(--muted);
-	}
-	
-	.contact {
-		text-align: center;
-		padding: 40px;
-		background: var(--card);
-		border: 1px solid var(--border);
-		border-radius: 20px;
-	}
-	
-	.contact a {
-		color: var(--accent);
-	}
-	
-	footer {
-		padding: 50px 0;
-		text-align: center;
-		color: var(--muted);
-	}
-	
-	.reveal {
-		opacity: 0;
-		transform: translateY(30px);
-		transition: .7s;
-	}
-	
-	.reveal.show {
-		opacity: 1;
-		transform: none;
-	}
-	
-	@keyframes appear {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: none;
-		}
-	}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="Abhinav (@toxic-devil) - hobbyist developer, programmer.">
+  <title>toxic-devil - Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-	<div class="container">
-		<nav>
-			<div class="logo"> Abhinav </div>
-			<button id="theme"> ☾ </button>
-		</nav>
-		<header class="hero">
-			<p class="quote-intro"> The best way to learn is to build, break, and understand. </p>
-			<div class="tag"> DEVELOPER / JAVASCRIPT / BACKEND </div>
-			<h1>
-Building things<br>
-with code.
-</h1>
-			<p> I'm Abhinav, a backend-focused JavaScript developer creating automation tools, APIs, and developer utilities. </p>
-			<div class="links"> <a href="https://github.com/toxic-devil">
-GitHub
-</a> <a href="#contact">
-Contact
-</a> </div>
-		</header>
-		<section class="reveal">
-			<div class="heading"> About </div>
-			<div class="about">
-				<p> I started coding at a young age and have spent years learning through building real projects. </p>
-				<br>
-				<p> Most of my work focuses on JavaScript, Node.js, automation systems, APIs, and reusable developer tools. I enjoy understanding how software works internally and creating solutions that connect different systems. </p>
-				<br>
-				<p> Beyond programming, I enjoy writing and poetry. Coding allows me to create through logic, while writing allows me to explore ideas and emotions through words. </p>
-			</div>
-		</section>
-		<section class="reveal">
-			<div class="heading"> Selected Work </div>
-			<div class="projects">
-				<div class="project">
-					<h3>
-Leon
-<span class="arrow">+</span>
-</h3>
-					<div class="details"> A modular WhatsApp automation framework built with JavaScript. Includes command handling, utilities, and extensible features.
-						<div class="tags"> <span>JavaScript</span> <span>Node.js</span> <span>Automation</span> </div>
-					</div>
-				</div>
-				<div class="project">
-					<h3>
-Musik
-<span class="arrow">+</span>
-</h3>
-					<div class="details"> A music application with a custom backend developed for handling application logic and services.
-						<div class="tags"> <span>Node.js</span> <span>APIs</span> <span>Backend</span> </div>
-					</div>
-				</div>
-				<div class="project">
-					<h3>
-Country Lookup
-<span class="arrow">+</span>
-</h3>
-					<div class="details"> An npm package providing structured country information with fuzzy search and multiple lookup methods.
-						<div class="tags"> <span>npm</span> <span>JavaScript</span> <span>JSON</span> </div>
-					</div>
-				</div>
-				<div class="project">
-					<h3>
-Olam Dictionary
-<span class="arrow">+</span>
-</h3>
-					<div class="details"> A Node.js package providing access to English and Malayalam dictionary searches.
-						<div class="tags"> <span>Node.js</span> <span>Package</span> </div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="reveal">
-			<div class="heading"> Technical Stack </div>
-			<div class="stack">
-				<div class="box">
-					<h3>
-Languages
-</h3>
-					<p> JavaScript
-						<br> Python
-						<br> HTML
-						<br> CSS </p>
-				</div>
-				<div class="box">
-					<h3>
-Backend
-</h3>
-					<p> Node.js
-						<br> REST APIs
-						<br> API Integration
-						<br> Server Logic </p>
-				</div>
-				<div class="box">
-					<h3>
-Developer Tools
-</h3>
-					<p> npm Packages
-						<br> CLI Applications
-						<br> Git
-						<br> JSON </p>
-				</div>
-				<div class="box">
-					<h3>
-Currently Exploring
-</h3>
-					<p> React
-						<br> Modern CSS
-						<br> Frontend Architecture
-						<br> UI Design </p>
-				</div>
-			</div>
-		</section>
-		<section class="reveal">
-			<div class="heading"> Beyond Code </div>
-			<div class="beyond">
-				<p> Outside programming, I enjoy writing stories, exploring poetry, and observing the small details around me. These creative interests influence how I think about building and designing software. </p>
-			</div>
-		</section>
-		<section class="reveal" id="contact">
-			<div class="contact">
-				<h2>
-Let's Connect
-</h2>
-				<br>
-				<p> GitHub: <a href="https://github.com/toxic-devil">
-github.com/toxic-devil
-</a> </p>
-			</div>
-		</section>
-		<footer> © 2026 Abhinav </footer>
-	</div>
-	<script>
-	const btn = document.getElementById("theme");
-	btn.onclick = () => {
-		document.body.classList.toggle("light");
-		btn.textContent = document.body.classList.contains("light") ? "☀" : "☾";
-	};
-	document.querySelectorAll(".project").forEach(card => {
-		card.onclick = () => {
-			card.classList.toggle("active");
-		};
-	});
-	const observer = new IntersectionObserver(entries => {
-		entries.forEach(entry => {
-			if(entry.isIntersecting) {
-				entry.target.classList.add("show");
-			}
-		});
-	}, {
-		threshold: .15
-	});
-	document.querySelectorAll(".reveal").forEach(section => observer.observe(section));
-	</script>
+  <header class="header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="logo" href="#home">toxic<span>-devil</span><i>.</i></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content reveal">
+        <p class="eyebrow">HELLO, WORLD! I'M</p>
+        <h1><span class="accent">Abhi</span>nav.</h1>
+        <div class="hero-meta">
+          <span>🇮🇳 India</span>
+          <span aria-hidden="true">·</span>
+          <span>@toxic-devil</span>
+        </div>
+      </div>
+    </section>
+    <section class="section container" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">ABOUT ME</p>
+        <h2>A little about <span class="accent">myself.</span></h2>
+      </div>
+      <div class="about-layout reveal">
+        <div class="about-copy">
+          <p class="lead">
+            Hey, I'm Abhinav, aka <span class="accent">@toxic-devil</span>.
+          </p>
+          <p>
+            I'm a 17-year-old hobbyist developer from India. I enjoy building
+            n coding fun projects. I mostly work on personal projects, with a few open-source projects
+            on GitHub.
+          </p>
+          <p>
+            Outside coding, I enjoy poetry and am kinda bibliophile.
+            I've written a few poems under my pen name, Ruh,
+            which you can find on my Telegram channel, @ruhwrites.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section container" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">MY TOOLKIT</p>
+        <h2>Things I work <span class="accent">with.</span></h2>
+        <p class="section-description">Technologies I'm currently exploring:</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <span class="skill-icon">JS</span>
+          <h3>JavaScript</h3>
+          <p>Backend engineering</p>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-icon python-icon">Py</span>
+          <h3>Python</h3>
+          <p>Automation</p>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-icon html-icon">&lt;/&gt;</span>
+          <h3>HTML &amp; CSS</h3>
+          <p>Responsive web pages</p>
+        </article>
+        <article class="skill-card reveal">
+          <span class="skill-icon node-icon">N</span>
+          <h3>Node.js</h3>
+          <p>Automation and backend engineering</p>
+        </article>
+      </div>
+    </section>
+    <section class="section container" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">SELECTED WORK</p>
+        <h2>Things I've <span class="accent">built.</span></h2>
+        <p class="section-description">A selection of my GitHub repos:</p>
+      </div>
+      <div class="project-toolbar">
+        <span class="muted" id="repo-count" aria-live="polite">Loading repositories...</span>
+        <a href="https://github.com/toxic-devil?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-link">All repos</a>
+      </div>
+      <div class="projects-grid" id="projects-grid" aria-live="polite">
+        <div class="loading-card">Fetching projects<span class="loading-dots">...</span></div>
+      </div>
+    </section>
+    <section class="contact-section" id="contact">
+      <div class="container contact-inner reveal">
+        <p class="eyebrow">SAY HI TO ME!</p>
+        <h2>Have an idea?<br><span class="accent">Let's connect.</span></h2>
+        <p class="contact-description">
+          Interested in my work or want to talk about a project? I'm always
+          open to connecting. Find me around the internet.
+        </p>
+        <div class="social-links">
+          <a href="https://github.com/toxic-devil" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span>GitHub</span>
+          </a>
+          <a href="https://telegram.me/amtoxicdevil" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span>Telegram</span>
+          </a>
+          <a href="mailto:toxicdevil.abhinav@gmail.com" class="social-link">
+            <span>Gmail</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo" href="#home">Abhi<span>nav</span><i>.</i></a>
+      <p>Thank you for spending your time with me 👉👈</p>
+      <p class="copyright">© <span id="year"></span> toxic-devil</p>
+    </div>
+  </footer>
 </body>
-
 </html>
